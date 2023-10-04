@@ -1,0 +1,81 @@
+{% extends 'admin_index.html' %}
+{% block dashboard %}
+<section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Customer Details</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Customer Firstname</th>
+                    <th>Customer Lastname</th>
+                    <th>Country</th>  
+                    <th>Address</th>
+                    <th>Town</th>
+                    <th>State</th>
+                    <th>Pincode</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                  </tr>
+                </thead>
+                {% for i in cdata %}
+                <tbody>
+                  <tr id = "row1">
+                     <td>
+                      {{i.id}}
+                     </td>
+                      <td>
+                          {{i.uname1}}
+                      </td>
+                      <td>
+                        {{i.uname2}}
+                      </td>
+                      <td>
+                        {{i.country}}
+                      </td>
+                      <td>
+                        {{i.address}}
+                      </td>
+                      <td>
+                        {{i.town}}
+                      </td>
+                      <td>
+                        {{i.state}}
+                      </td>
+                      <td>
+                        {{i.pincode}}
+                      </td>
+                      <td>
+                        {{i.phone}}
+                      </td>
+                      <td>
+                        {{i.email}}
+                      </td>
+
+                  </tr>
+                </tbody>
+                {% endfor %}
+              </table>
+          
+          <!-- /.card -->
+
+        
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+        
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+      
+      <!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </section>
+{% endblock %}

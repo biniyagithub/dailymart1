@@ -1,0 +1,86 @@
+{% extends 'admin_index.html' %}
+{% block dashboard %}
+<section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">ORDERS</h3>
+            </div>
+           
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Customer Name</th>
+                    <th>Email ID</th>
+                    <th>Phone Number</th>  
+                    <th>Product Name</th> 
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Date </th>
+                    <th>Accept</th>
+                    <th>Reject</th>
+                  </tr>
+                </thead>
+                {% for i in viewdata %}
+                <tbody>
+                  <tr id = "row1">
+                     <td>
+                      {{i.id}}
+                     </td>
+                      <td>
+                          {{i.userid.uname1}}
+                      </td>
+                      <td>
+                          {{i.userid.email}}
+                      </td>
+                      <td>
+                          {{i.userid.phone}}
+                      </td> 
+                      <td>
+                         {{i.productid.pname}}
+                      </td>
+                      <td>
+                         {{i.productid.price}}
+                      </td>
+                      <td>
+                         {{i.quantity}}
+                      </td>
+                      <td>
+                         {{i.total}}
+                      </td>
+                      <td>
+                         {{i.date}}
+                      </td>
+                      <td>
+                         <a href="{% url 'sendconfirmation' i.id %}" ><button type="submit" class="btn btn-primary">Order Confirmed</button></a>
+                      </td>
+                      <td>
+                        <a href="{% url 'reject' i.id %}" ><button type="submit" class="btn btn-danger">Reject</button></a>
+                      </td>
+                  </tr>
+                </tbody>
+                {% endfor %}
+              </table>
+          
+          <!-- /.card -->
+
+        
+          <!-- /.card -->
+        </div>
+      
+        <!-- /.col -->
+        
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+      
+      <!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </section>
+{% endblock %}

@@ -1,0 +1,95 @@
+{% extends 'admin_index.html' %}
+{% block dashboard %}
+<section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Category Details</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Product Name</th>
+                    <th>Product Image</th>
+                    <th>Product Price</th>   
+                    <th>Product Category </th>
+                    <th>Product Stock</th>
+                    <th>Product Quantity</th>                                      
+                    <th>Edit</th>
+                    <th>Delete</th>
+                  </tr>
+                </thead>
+                {% for i in vpdata %}
+                <tbody>
+                  <tr id = "row1">
+                     <td>
+                      {{i.id}}
+                     </td>
+                      <td>
+                          {{i.pname}}
+                      </td>
+                      {% if i.pimage %}
+                      <td>
+                         <img src="{{i.pimage.url}}" style="height:50px;width:50px;">
+                      </td>
+                      {% endif %}
+                      <td>
+                          {{i.price}}
+                      </td>
+                      <td>
+                          {{i.category}}
+                      </td>
+                      {% if i.stock <= 0 %}
+                      <td><a href=""></a>
+                      <p style="color: red;">Stock you can add</p>
+                      <div class="d-flex align-items-center">
+                        <a href="{% url 'pedit' id=i.id %}"><button> Add
+                          <i class="typcn typcn-edit btn-icon-append"></i>
+                           </button></a>
+                      </div>
+                      </td>
+                      {% else %}
+                      <td>
+                        {{i.stock}}
+                      </td>
+                      {% endif %}
+
+                      <td>
+                        {{i.quantity}}
+                    </td>
+
+                      <td>
+                        <a href="{% url 'pedit' id=i.id %}"><button> Edit  </button>
+                        </a>
+                      </td>
+
+                      <td>
+                        <a href="{% url 'pdelete' id=i.id %}"><button> Delete </button>
+                        </a>
+                      </td>
+                      
+                  </tr>
+                </tbody>
+                {% endfor %}
+              </table>
+          
+          <!-- /.card -->
+
+        
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+        
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+      
+      <!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </section>
+{% endblock %}

@@ -1,0 +1,131 @@
+{% extends 'userindex.html' %}
+{% load static %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+{% block content %}
+
+    <!-- Shoping Cart Section Begin -->
+    <section class="shoping-cart spad">
+        <div class="container">
+           
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="shoping__cart__table">
+                    <form action="{% url 'proceedcheck' %}" method="post" enctype="multipart/form-data">
+                      {% csrf_token %}
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th class="shoping__product">Products</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in data %}
+                                <tr>
+                                    <td class="shoping__cart__item">
+                                        <h5>{{i.productid.pname}}</h5>
+                                        <img src="{{i.productid.pimage.url}}" height="50px" width="50px" alt="">
+                                    </td>
+                                    <td class="shoping__cart__price">
+                                        {{i.productid.price}}
+                                        <input type="hidden" id="price" name="price" value="{{i.productid.price}}">
+                                    </td>
+                                    <td class="shoping__cart__quantity">
+                                        <div class="quantity">
+                                            <div class="">
+                                                <input type="number" class="quan" value={{i.quantity}}>
+                                                <input type="hidden" class="pid" name="pid" value="{{i.id}}">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="shoping__cart__total">
+                                        {{i.total}}
+                                    </td>
+                                    
+                                    <td>
+                                        <a href="{% url 'buy' i.productid.id %}"><img src="{% static 'dist\img\shopping-bag.png' %}" alt="" style="max-width: 23px; max-height: 23px;"></a>
+                                    </td>
+                                    <td class="shoping__cart__item__close">
+                                        <a href="{% url 'cdelete' id=i.id %}"> <span class="fa fa-trash"></span></a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                               
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+           
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="shoping__cart__btns">
+                        <a href="#" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
+                        <a href="#" class="primary-btn cart-btn cart-btn-right"><span class="icon_loading"></span>
+                            Upadate Cart</a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="shoping__continue">
+                        <div class="shoping__discount">
+                            <h5>Discount Codes</h5>
+                            <form action="#">
+                                <input type="text" placeholder="Enter your coupon code">
+                                <button type="submit" class="site-btn">APPLY COUPON</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="shoping__checkout">
+                        <h5>Cart Total</h5>
+                        <ul>
+                            <li>Subtotal <span> ₹{{s.total__sum}}</span></li>
+                            <li>Total <span>₹{{s.total__sum}}</span></li>
+                        </ul>
+                        {% if i.stock == 0 %}
+                        <h5 style="color: brown;"> OUT OF STOCK </h5>
+                        {% else %}
+                        <button type="submit" class="site-btn"><a href="{% url 'proceedcheck' %}" class="primary-btn">PROCEED TO CHECKOUT</a></button>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Shoping Cart Section End -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+        $(".quan").on('change',function() {
+        // Get the row containing the input
+        var row = $(this).closest('tr');
+        var pid = parseInt(row.find(".pid").val());    
+        var qty = parseInt(row.find(this).val());
+        var price = parseInt(row.find('#price').val());
+        
+        location.reload(true);
+                $.ajax({
+                        url: "{% url 'cartupdate' %}",
+                        method: 'post',
+                        cache: false,
+                        data: {
+                            pid: pid,
+                            qty: qty,
+                            price: price,
+                        }
+                    });
+    
+        });
+    });  
+    </script>
+  
+{% endblock %}
+
+   

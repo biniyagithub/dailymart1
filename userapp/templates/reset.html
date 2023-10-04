@@ -1,0 +1,37 @@
+{% extends 'userindex.html' %}
+{% block content %}
+<div class="contact-form spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="contact__form__title">
+                    <h2>Reset Password</h2>
+                </div>
+            </div>
+        </div>
+        {% include 'messages.html' %}
+        <form action="{% url 'resetpass' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}  
+            
+                <div class="col-lg-12">
+                    <label class="form-label" for="typeEmailX">EMAIL</label>
+                    <input type="email" value="{{request.session.useremail_u}}" id="mail"  name="mail" placeholder="Your Email" style="border-color: black;">
+                </div>
+            
+                <div class="col-lg-12">
+                    <label class="form-label" for="typePasswordX">PASSWORD</label>
+                    <input type="password"  id="pass1"  name="pass1" placeholder="Your Password" style="border-color: black;">
+                </div>
+                <div class="col-lg-12">
+                    <label class="form-label" for="typePasswordX">CONFIRM PASSWORD</label>
+                    <input type="password"  id="pass2"  name="pass2" placeholder="Confirm Password" style="border-color: black;">
+                </div>
+
+                <div class="col-lg-12">
+                <button type="submit" class="site-btn">CONFIRM</button>
+                </div>
+        
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends 'admin_index.html' %}
+{% block dashboard %}
+<section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">ORDERS</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Customer Name</th>
+                    <th>Email ID</th>
+                    <th>Phone Number</th>  
+                    <th>Product Name</th> 
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                {% for i in cdata %}
+                <tbody>
+                  <tr id = "row1">
+                     <td>
+                      {{i.id}}
+                     </td>
+                      <td>
+                          {{i.userid.uname1}}
+                      </td>
+                      <td>
+                          {{i.userid.email}}
+                      </td>
+                      <td>
+                          {{i.userid.phone}}
+                      </td> 
+                      <td>
+                         {{i.productid.pname}}
+                      </td>
+                      <td>
+                         {{i.productid.price}}
+                      </td>
+                      <td>
+                         {{i.quantity}}
+                      </td>
+                      <td>
+                         {{i.total}}
+                      </td>
+                      {% if i.status == 1 %}
+                      <td style="color: green">
+                         Order Delivered
+                      </td>
+                      {% elif i.status == 2 %}
+                      <td style="color: brown;">
+                        Order Cancelled
+                      </td>
+                      {% else %}
+                      <td style="color:lightseagreen">
+                        Order Not Delivered Yet
+                     </td>
+                     {% endif %}
+                  </tr>
+                </tbody>
+                {% endfor %}
+              </table>
+          
+          <!-- /.card -->
+
+        
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+        
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+      
+      <!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </section>
+{% endblock %}

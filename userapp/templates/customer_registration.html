@@ -1,0 +1,79 @@
+{% extends 'userindex.html' %}
+{% block content %}
+ <section class="checkout spad">
+    <div class="container">
+            <div class="checkout__form">
+                <h4>Registration Form</h4>
+                <form action="{% url 'registration' %}" method="post" enctype="multipart/form-data" >
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12" style="border: 2px solid rgb(237, 238, 238);" >
+                            <div class="row">
+                                <div class="col-lg-6" >
+                                    <div class="checkout__input">
+                                        <p>Fist Name<span>*</span></p>
+                                        <input type="text" name="fname" style="border: 2px solid rgb(12, 231, 158);">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Last Name<span>*</span></p>
+                                        <input type="text" name="lname" style="border: 2px solid rgb(12, 231, 158);">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="checkout__input">
+                                <p>Country<span>*</span></p>
+                                <input type="text" name="country" style="border: 2px solid rgb(12, 231, 158);">
+                            </div>
+                            <div class="checkout__input">
+                                <p>Address<span>*</span></p>
+                                <input type="text" placeholder="Street Address" class="checkout__input__add" style="border: 2px solid rgb(12, 231, 158);">
+                                <input type="text" placeholder="Apartment, suite, unite ect (optinal)" name="address" style="border: 2px solid rgb(12, 231, 158);">
+                            </div>
+                            <div class="checkout__input">
+                                <p>Town/City<span>*</span></p>
+                                <input type="text" name="town" style="border: 2px solid rgb(12, 231, 158);">
+                            </div>
+                            <div class="checkout__input">
+                                <p>Country/State<span>*</span></p>
+                                <input type="text" name="state" style="border: 2px solid rgb(12, 231, 158);">
+                            </div>
+                            <div class="checkout__input">
+                                <p>Postcode / ZIP<span>*</span></p>
+                                <input type="text" name="pincode" style="border: 2px solid rgb(12, 231, 158);">
+                            </div>
+                            
+                                <div class="checkout__input">
+                                    <p>Phone<span>*</span></p>
+                                    <input type="text" name="phone" style="border: 2px solid rgb(12, 231, 158);">
+                                </div>
+                          
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Email<span>*</span></p>
+                                        <input type="email" name="email" style="border: 2px solid rgb(12, 231, 158);">
+                                    </div>
+                                </div>
+                            
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Password<span>*</span></p>
+                                        <input type="password" name="password" style="border: 2px solid rgb(12, 231, 158);">
+                                    </div>
+                                </div>
+                            </div>
+                         <button type="submit" class="btn btn-success btn-lg mb-1">Register</button>
+                     </div>
+                    
+                       
+                    </div>
+                </form>{{msg}}
+            </div>
+        </div>
+</section>
+{% endblock %}
+
+   
