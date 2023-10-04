@@ -296,7 +296,7 @@ def comments(request):
     else:
          data1 = Product.objects.all()
          data2 = Category.objects.all()
-         return render(request,'about.html',{'data1':data1,'data2':data2,'cart':cart})
+         return render(request,'about.html',{'data1':data1,'data2':data2})
 
 
 def cdelete(request,id):
