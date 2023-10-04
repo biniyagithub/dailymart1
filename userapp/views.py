@@ -287,7 +287,7 @@ def feedback(request):
          data.save()
      return render(request,'contact.html',{'data1':data1,'data2':data2})
 
-def about(request):
+def comments(request):
     if 'u_id' in request.session:
          cart = Cart.objects.filter(status=0).count()
          data1 = Product.objects.all()
